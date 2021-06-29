@@ -1,4 +1,4 @@
-import {getRandomInt} from './random-int.js';
+import {getRandomInt} from './utils.js';
 
 const MAX_COMMENT_LENGTH = 140;
 
