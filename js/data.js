@@ -1,13 +1,5 @@
 import {getRandomInt} from './utils.js';
 
-const MAX_COMMENT_LENGTH = 140;
-
-function checkCommentLength(comment, maxLength) {
-  return comment.length < maxLength;
-}
-
-checkCommentLength('some twit', MAX_COMMENT_LENGTH);
-
 const MIN_LIKES_AMOUNT = 15;
 const MAX_LIKES_AMOUNT = 200;
 
@@ -90,7 +82,6 @@ const getComment = () => (
     name: name[getRandomInt(0, name.length-1)],
   });
 
-const photos = [];
 
 const getPhoto = (index) => (
   {
@@ -102,11 +93,12 @@ const getPhoto = (index) => (
   });
 
 const createPhotos = (arrayAmount) => {
+  const photos = [];
   for (let id = 1; id <= arrayAmount; id++){
     const photo = getPhoto(id);
     photos.push(photo);
   }
-  return getPhoto;
+  return photos;
 };
 
 export {createPhotos};

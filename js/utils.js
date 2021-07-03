@@ -7,3 +7,12 @@ function getRandomInt(min, max) {
 }
 
 export {getRandomInt};
+
+
+const MAX_COMMENT_LENGTH = 140;
+
+function checkCommentLength(comment, maxLength) {
+  return comment.length < maxLength;
+}
+
+checkCommentLength('some twit', MAX_COMMENT_LENGTH);
