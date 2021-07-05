@@ -2,9 +2,8 @@ const miniautureTemplate = document.querySelector('#picture')
   .content.querySelector('.picture');
 const miniauturesList = document.querySelector('.pictures');
 
-const miniauturesListFragment = document.createDocumentFragment();
-
 const renderMiniatures = (photos) =>{
+  const miniauturesListFragment = document.createDocumentFragment();
   photos.forEach((photo) => {
     const miniautureElement = miniautureTemplate.cloneNode(true);
     miniautureElement.querySelector('.picture__img').src = photo.url;
