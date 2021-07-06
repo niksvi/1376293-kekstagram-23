@@ -1,3 +1,4 @@
+import { initUploadForm } from './form.js';
 import {createPhotos} from './data.js';
 import {renderMiniatures} from './render-miniautures.js';
 
@@ -7,3 +8,4 @@ const photos = createPhotos(PHOTO_AMOUNT);
 
 renderMiniatures(photos);
 
+initUploadForm();
