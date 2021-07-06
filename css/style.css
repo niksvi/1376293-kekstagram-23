@@ -697,6 +697,12 @@ main {
   border-radius: 5px;
 }
 
+.text__hashtags:invalid,
+.text__description:invalid {
+  border-color: red;
+  outline-color: red;
+}
+
 
 /**
  * Кнопка для отправки изображения
