@@ -78,7 +78,7 @@ const getComment = () => (
   {
     id: getCommentId(),
     avatar: `img/avatar-${getRandomInt(MIN_AVATAR_ID,MAX_AVATAR_ID)}.svg`,
-    message: new Array(getRandomInt(MIN_MESSAGE_AMOUNT, MAX_MESSAGE_AMOUNT)).fill(null).map(() => message[getRandomInt(0,message.length-1)]),
+    message: new Array(getRandomInt(MIN_MESSAGE_AMOUNT, MAX_MESSAGE_AMOUNT)).fill(null).map(() => message[getRandomInt(0,message.length-1)]).join('. '),
     name: name[getRandomInt(0, name.length-1)],
   });
 
