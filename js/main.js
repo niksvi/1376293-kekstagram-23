@@ -9,6 +9,8 @@ const photos = createPhotos(PHOTO_AMOUNT);
 
 renderMiniatures(photos);
 
+showFullscreen(photos);
+
 initUploadForm();
 
 showFullscreen(photos);

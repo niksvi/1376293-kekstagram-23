@@ -37,8 +37,8 @@ const validateHashtags = (string) => {
     return 'Хэш-тег не может быть использован более одного раза';
   }
 
-  for(let i=0; i< hashtags.length; i++) {
-    const validate = validateHashtag(hashtags[i]);
+  for(const hashtag of hashtags) {
+    const validate = validateHashtag(hashtag);
 
     if(validate) {
       return validate;
