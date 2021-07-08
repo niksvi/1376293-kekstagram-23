@@ -47,30 +47,30 @@ const showFullscreen = (photos) => {
       socialCommentsList.removeChild(socialCommentsList.firstChild);
     }
 
-    for(let i = 0; i < photo.comments.length; i++) {
-      const comment = document.createElement('li');
-      comment.classList.add('social__comment');
+    for(const comment of photo.comments) {
+      const commentNode = document.createElement('li');
+      commentNode.classList.add('social__comment');
 
       const image = document.createElement('img');
       image.classList.add('social__picture');
-      image.src = photo.comments[i].avatar;
-      image.alt = photo.comments[i].name;
+      image.src = comment.avatar;
+      image.alt = comment.name;
       image.width = 35;
       image.height = 35;
-      comment.appendChild(image);
+      commentNode.appendChild(image);
 
       const text = document.createElement('p');
       text.classList.add('social__text');
-      text.textContent = photo.comments[i].message;
-      comment.appendChild(text);
+      text.textContent = comment.message;
+      commentNode.appendChild(text);
 
-      socialCommentsList.appendChild(comment);
+      socialCommentsList.appendChild(commentNode);
     }
   };
 
   const onPictureNodeClick = (evt) => {
     if (evt.target.closest('.picture')) {
-      const dataClickImage = evt.target.getAttribute('data-image');
+      const dataClickImage = evt.target.getAttribute('data-id');
 
       openModal();
 
