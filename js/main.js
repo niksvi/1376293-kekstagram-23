@@ -12,3 +12,5 @@ renderMiniatures(photos);
 showFullscreen(photos);
 
 initUploadForm();
+
+showFullscreen(photos);

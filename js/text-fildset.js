@@ -5,44 +5,37 @@ const textFieldsetNode = document.querySelector('.text');
 const hashtagsInputNode = textFieldsetNode.querySelector('.text__hashtags');
 const descriptionInputNode = textFieldsetNode.querySelector('.text__description');
 
-const textInputNodes = [hashtagsInputNode, descriptionInputNode];
-
 const onTextInputNodeKeydown = (evt) => {
   if(isEscape(evt)){
     evt.stopPropagation();
   }
+  descriptionInputNode.removeEventListener('keydown', onTextInputNodeKeydown);
+  hashtagsInputNode.removeEventListener('keydown', onTextInputNodeKeydown);
 };
 
-const validateTextInputNode = (inputNode) => {
-  let validate = () => '';
-  if(inputNode.matches('.text__hashtags')) {
-    validate = validateHashtags;
-  } else if(inputNode.matches('.text__description')) {
-    validate = validateDescription;
-  }
-
-  inputNode.setCustomValidity(validate(inputNode.value));
-
-  inputNode.reportValidity();
+const hashtagsInputNodeClick = ({target}) => {
+  hashtagsInputNode.setCustomValidity(validateHashtags(target.value));
+  hashtagsInputNode.reportValidity();
+  hashtagsInputNode.addEventListener('keydown', onTextInputNodeKeydown);
 };
 
-const onTextInputNodeInput = ({target}) => {
-  validateTextInputNode(target);
+const descriptionInputNodeClick = ({target}) => {
+  descriptionInputNode.setCustomValidity(validateDescription(target.value));
+  descriptionInputNode.reportValidity();
+  descriptionInputNode.addEventListener('keydown', onTextInputNodeKeydown);
 };
 
 const initTextField = () => {
-  textInputNodes.forEach((textInputNode) => {
-    textInputNode.addEventListener('input', onTextInputNodeInput);
-    textInputNode.addEventListener('keydown', onTextInputNodeKeydown);
-  });
+  hashtagsInputNode.addEventListener('input', hashtagsInputNodeClick);
+  descriptionInputNode.addEventListener('input', descriptionInputNodeClick);
 };
 
+
 const destroyTextField = () => {
-  textInputNodes.forEach((textInputNode) => {
-    textInputNode.removeEventListener('input', onTextInputNodeInput);
-    textInputNode.removeEventListener('keydown', onTextInputNodeKeydown);
-    textInputNode.setCustomValidity('');
-  });
+  hashtagsInputNode.removeEventListener('input', hashtagsInputNodeClick);
+  descriptionInputNode.removeEventListener('input', descriptionInputNodeClick);
+  descriptionInputNode.setCustomValidity('');
+  hashtagsInputNode.setCustomValidity('');
 };
 
 export {initTextField, destroyTextField};
