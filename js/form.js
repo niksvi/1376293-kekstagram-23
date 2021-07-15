@@ -1,3 +1,4 @@
+import { offScaleChange, onScaleChange } from './scale-control.js';
 import { destroyTextField, initTextField } from './text-fildset.js';
 import {isEscape, showNode, hideNode, switchOnModalMode, switchOffModalMode} from './utils.js';
 
@@ -11,6 +12,7 @@ const hideForm = () => {
   switchOffModalMode();
   uploadFormNode.reset();
   destroyTextField();
+  offScaleChange();
 };
 
 const onDocumentKeydown = (evt) => {
@@ -24,8 +26,8 @@ const onDocumentKeydown = (evt) => {
 const showForm = () => {
   showNode(overlayNode);
   switchOnModalMode();
-
   initTextField();
+  onScaleChange();
 
   cancelButtonNode.addEventListener('click', hideForm);
   document.addEventListener('keydown', onDocumentKeydown);
