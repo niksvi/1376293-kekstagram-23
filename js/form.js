@@ -1,4 +1,5 @@
 import { offScaleChange, onScaleChange } from './scale-control.js';
+import { offEffects, onEffects } from './slider-effects.js';
 import { destroyTextField, initTextField } from './text-fildset.js';
 import {isEscape, showNode, hideNode, switchOnModalMode, switchOffModalMode} from './utils.js';
 
@@ -13,6 +14,7 @@ const hideForm = () => {
   uploadFormNode.reset();
   destroyTextField();
   offScaleChange();
+  offEffects();
 };
 
 const onDocumentKeydown = (evt) => {
@@ -28,6 +30,7 @@ const showForm = () => {
   switchOnModalMode();
   initTextField();
   onScaleChange();
+  onEffects();
 
   cancelButtonNode.addEventListener('click', hideForm);
   document.addEventListener('keydown', onDocumentKeydown);

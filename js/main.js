@@ -1,3 +1,4 @@
+import '../nouislider/nouislider.js';
 import { initUploadForm } from './form.js';
 import {createPhotos} from './data.js';
 import {renderMiniatures} from './render-miniautures.js';
