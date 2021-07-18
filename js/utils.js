@@ -1,4 +1,5 @@
 const ALPHANUMERIC = /^[а-яёa-z0-9]+$/;
+const ALERT_SHOW_TIME = 5000;
 
 function getRandomInt(min, max) {
   if (min >=0 && min < max){
@@ -27,4 +28,25 @@ const isAlphaNumeric = (string) => ALPHANUMERIC.test(string.toLowerCase());
 
 const isUnique = (array) => array.length === [...new Set(array)].length;
 
-export {getRandomInt, checkMaxLength, isAlphaNumeric, isUnique, isEscape, showNode, hideNode, switchOnModalMode, switchOffModalMode};
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '30px 10px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+export {getRandomInt, checkMaxLength, isAlphaNumeric, isUnique, isEscape, showNode, hideNode, switchOnModalMode, switchOffModalMode, showAlert};

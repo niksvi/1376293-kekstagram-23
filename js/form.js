@@ -1,3 +1,5 @@
+import { sendData } from './api.js';
+import { showErrorMessage, showSuccessMessage } from './modal-message.js';
 import { offScaleChange, onScaleChange } from './scale-control.js';
 import { offEffects, onEffects } from './slider-effects.js';
 import { destroyTextField, initTextField } from './text-fildset.js';
@@ -40,4 +42,16 @@ const initUploadForm = () => {
   uploadInputNode.addEventListener('change', showForm);
 };
 
-export {initUploadForm};
+const setUserFormSubmit = () => {
+  uploadFormNode.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      showSuccessMessage,
+      showErrorMessage,
+      new FormData(evt.target),
+    );
+    hideForm();
+  });
+};
+
+export {initUploadForm, setUserFormSubmit, hideForm};
