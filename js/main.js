@@ -1,17 +1,16 @@
+import './api.js';
 import '../nouislider/nouislider.js';
-import { initUploadForm } from './form.js';
-import {createPhotos} from './data.js';
+import { hideForm, initUploadForm, setUserFormSubmit } from './form.js';
 import {renderMiniatures} from './render-miniautures.js';
 import { showFullscreen } from './fullscreen.js';
+import { getData } from './api.js';
 
-const PHOTO_AMOUNT = 25;
+const dataPromise = getData(() => {});
 
-const photos = createPhotos(PHOTO_AMOUNT);
+dataPromise.then(renderMiniatures);
 
-renderMiniatures(photos);
-
-showFullscreen(photos);
+dataPromise.then(showFullscreen);
 
 initUploadForm();
 
-showFullscreen(photos);
+setUserFormSubmit(hideForm);
