@@ -13,7 +13,7 @@ const onResponseCallback = (response) => {
 const getData = (onSuccess) =>
   fetch(URL_GET_DATA)
     .then(onResponseCallback)
-    .then(onSuccess())
+    .then(onSuccess)
     .catch(() => {
       showAlert('Не удалось получить данные с сервера. Попробуйте ещё раз.');
     });
@@ -27,7 +27,7 @@ const sendData = (onSuccess, onError, body) => {
     },
   )
     .then(onResponseCallback)
-    .then(onSuccess())
+    .then(onSuccess)
     .catch(() => {
       onError();
     });

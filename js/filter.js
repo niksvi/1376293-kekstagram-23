@@ -1,5 +1,6 @@
-import { dataPromise, renderMiniatures } from './render-miniautures.js';
+import { renderMiniatures } from './render-miniautures.js';
 import { debounce } from './utils/debounce.js';
+import {dataPromise} from './main.js';
 
 const filtersList = document.querySelector('.img-filters');
 const filterButtons = filtersList.querySelectorAll('.img-filters__button');

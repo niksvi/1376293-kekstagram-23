@@ -1,4 +1,3 @@
-import { getData } from './api.js';
 import { showFullscreen } from './fullscreen.js';
 
 const miniautureTemplate = document.querySelector('#picture')
@@ -22,8 +21,4 @@ const renderMiniatures = (photos) =>{
   showFullscreen(photos);
 };
 
-const dataPromise = getData(() => {});
-
-dataPromise.then(renderMiniatures);
-
-export {renderMiniatures, dataPromise};
+export {renderMiniatures};
