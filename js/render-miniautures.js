@@ -1,3 +1,5 @@
+import { showFullscreen } from './fullscreen.js';
+
 const miniautureTemplate = document.querySelector('#picture')
   .content.querySelector('.picture');
 const miniauturesList = document.querySelector('.pictures');
@@ -13,7 +15,10 @@ const renderMiniatures = (photos) =>{
     miniautureInfo.querySelector('.picture__comments').textContent = photo.comments.length;
     miniauturesListFragment.appendChild(miniautureElement);
   });
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
+  document.querySelectorAll('.picture').forEach((element) => element.remove());
   miniauturesList.appendChild(miniauturesListFragment);
+  showFullscreen(photos);
 };
 
 export {renderMiniatures};
