@@ -3,10 +3,12 @@ import { isEscape } from './utils.js';
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const uploadFormNode = document.querySelector('.img-upload__form');
-
+const successMessage = successTemplate.cloneNode(true);
+const errorMessage = errorTemplate.cloneNode(true);
 
 const onModalMessageHide = () => {
-  document.querySelectorAll('.success, .error').forEach((messageElement) => messageElement.remove());
+  successMessage.remove();
+  errorMessage.remove();
   uploadFormNode.reset();
   document.removeEventListener('click', onModalMessageHide);
 };
@@ -29,7 +31,6 @@ const showModalMessage = () => {
 };
 
 const showSuccessMessage = () => {
-  const successMessage = successTemplate.cloneNode(true);
   const successMessageBox = successMessage.querySelector('.success__inner');
   const successButton = successMessage.querySelector('.success__button');
   showModalMessage();
@@ -40,7 +41,6 @@ const showSuccessMessage = () => {
 };
 
 const showErrorMessage = () => {
-  const errorMessage = errorTemplate.cloneNode(true);
   const errorMessageBox = errorMessage.querySelector('.error__inner');
   const errorButton = errorMessage.querySelector('.error__button');
   showModalMessage();

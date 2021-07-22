@@ -1,6 +1,8 @@
 import {isEscape, hideNode, showNode, switchOnModalMode, switchOffModalMode} from './utils.js';
 
 const COMMENTS_STEP = 5;
+const WIDTH_COMMENT_PICTURE = 35;
+const HEIGHT_COMMENT_PICTURE = 35;
 
 const miniauturesList = document.querySelector('.pictures');
 const bigPictureNode = document.querySelector('.big-picture');
@@ -23,8 +25,8 @@ const showComment = ({avatar, name, message}) => {
   commentPicture.classList.add('social__picture');
   commentPicture.src = avatar;
   commentPicture.alt = name;
-  commentPicture.width = 35;
-  commentPicture.height = 35;
+  commentPicture.width = WIDTH_COMMENT_PICTURE;
+  commentPicture.height = HEIGHT_COMMENT_PICTURE;
   commentElement.appendChild(commentPicture);
 
   const commentText = document.createElement('p');
@@ -49,7 +51,6 @@ const showMoreComments = () => {
   socialCommentCountNode.textContent = `${numberComments} из ${currentComments.length} комментариев`;
 };
 
-
 const closeModal = () => {
   hideNode(bigPictureNode);
   switchOffModalMode();
@@ -59,7 +60,12 @@ const onDocumentKeydown = (evt) => {
   if(isEscape(evt)) {
     evt.preventDefault();
     closeModal();
+    document.removeEventListener('keydown', onDocumentKeydown);
   }
+};
+
+const onCancelButtonClick = () => {
+  closeModal();
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
@@ -67,7 +73,7 @@ const openModal = () => {
   showNode(bigPictureNode);
   switchOnModalMode();
 
-  cancelButtonNode.addEventListener('click', closeModal);
+  cancelButtonNode.addEventListener('click', onCancelButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
   commentsLoaderNode.addEventListener('click', showMoreComments);
 };

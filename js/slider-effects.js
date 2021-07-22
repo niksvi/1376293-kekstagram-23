@@ -89,7 +89,13 @@ const turnEffectLevel = (effectName) => {
     sliderNode.noUiSlider.off();
     sliderNode.noUiSlider.updateOptions(options);
   } else {
-    noUiSlider.create(sliderNode, options);
+    noUiSlider.create(sliderNode, {
+      ...options,
+      format: {
+        from: (value) => parseFloat(value),
+        to: (value) => Number.isInteger(value) ? value.toFixed(0) : value.toFixed(1),
+      },
+    });
   }
 
   showNode(sliderFormNode);

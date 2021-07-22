@@ -9,8 +9,6 @@ const onTextInputNodeKeydown = (evt) => {
   if(isEscape(evt)){
     evt.stopPropagation();
   }
-  descriptionInputNode.removeEventListener('keydown', onTextInputNodeKeydown);
-  hashtagsInputNode.removeEventListener('keydown', onTextInputNodeKeydown);
 };
 
 const hashtagsInputNodeClick = ({target}) => {
@@ -36,6 +34,9 @@ const destroyTextField = () => {
   descriptionInputNode.removeEventListener('input', descriptionInputNodeClick);
   descriptionInputNode.setCustomValidity('');
   hashtagsInputNode.setCustomValidity('');
+
+  descriptionInputNode.removeEventListener('keydown', onTextInputNodeKeydown);
+  hashtagsInputNode.removeEventListener('keydown', onTextInputNodeKeydown);
 };
 
 export {initTextField, destroyTextField};

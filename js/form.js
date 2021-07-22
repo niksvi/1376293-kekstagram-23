@@ -1,4 +1,5 @@
 import { sendData } from './api.js';
+import { loadPreview } from './load-preview.js';
 import { showErrorMessage, showSuccessMessage } from './modal-message.js';
 import { offScaleChange, onScaleChange } from './scale-control.js';
 import { offEffects, onEffects } from './slider-effects.js';
@@ -23,7 +24,12 @@ const onDocumentKeydown = (evt) => {
   if(isEscape(evt)) {
     evt.preventDefault();
     hideForm();
+    document.removeEventListener('keydown', onDocumentKeydown);
   }
+};
+
+const onCancelButtonClick = () => {
+  hideForm();
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
@@ -34,12 +40,8 @@ const showForm = () => {
   onScaleChange();
   onEffects();
 
-  cancelButtonNode.addEventListener('click', hideForm);
+  cancelButtonNode.addEventListener('click', onCancelButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
-};
-
-const initUploadForm = () => {
-  uploadInputNode.addEventListener('change', showForm);
 };
 
 const setUserFormSubmit = () => {
@@ -52,6 +54,21 @@ const setUserFormSubmit = () => {
     );
     hideForm();
   });
+};
+
+const onUploadInputChange = async ({target}) => {
+  try {
+    const file = target.files[0];
+    await loadPreview(file);
+    showForm();
+  } catch (error) {
+    target.value = '';
+    showErrorMessage();
+  }
+};
+
+const initUploadForm = () => {
+  uploadInputNode.addEventListener('change', onUploadInputChange);
 };
 
 export {initUploadForm, setUserFormSubmit, hideForm};
