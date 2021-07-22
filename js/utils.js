@@ -49,4 +49,16 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomInt, checkMaxLength, isAlphaNumeric, isUnique, isEscape, showNode, hideNode, switchOnModalMode, switchOffModalMode, showAlert};
+const shuffle = (items) => {
+  items = [...items];
+
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+
+  return items;
+};
+
+export {shuffle, getRandomInt, checkMaxLength, isAlphaNumeric, isUnique, isEscape, showNode, hideNode, switchOnModalMode, switchOffModalMode, showAlert};

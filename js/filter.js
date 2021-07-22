@@ -1,10 +1,10 @@
 import { renderMiniatures } from './render-miniautures.js';
 import { debounce } from './utils/debounce.js';
 import {dataPromise} from './main.js';
+import { shuffle } from './utils.js';
 
 const RERENDER_DELAY = 500;
 const RANDOM_PICTURES_COUNT = 10;
-const SEED_FOR_MAGIC = 1;
 
 const filtersList = document.querySelector('.img-filters');
 const filterButtons = filtersList.querySelectorAll('.img-filters__button');
@@ -22,7 +22,7 @@ const setFilterButtonsStyle = () => {
 };
 
 const getRandomPictures = (pictures) => {
-  const randomPictures = pictures.map((item) => [Math.random(), item]).sort().map((element) => element[SEED_FOR_MAGIC]).slice(0, RANDOM_PICTURES_COUNT);
+  const randomPictures = shuffle(pictures).slice(0, RANDOM_PICTURES_COUNT);
   renderMiniatures(randomPictures);
 };
 

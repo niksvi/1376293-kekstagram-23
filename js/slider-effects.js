@@ -4,7 +4,7 @@ const sliderFormNode = document.querySelector('.effect-level');
 const sliderNode = sliderFormNode.querySelector('.effect-level__slider');
 const effectLevelValue= sliderFormNode.querySelector('.effect-level__value');
 const imgPreview = document.querySelector('.img-upload__preview img');
-const uploadFormNode = document.querySelector('.img-upload__form');
+const effectsList = document.querySelector('.effects');
 
 const NONE_EFFECT = 'none';
 let currentEffect;
@@ -132,13 +132,13 @@ const onFilterChange = (evt) => {
 const onEffects = () => {
   currentEffect = NONE_EFFECT;
   imgPreview.classList.add(`effects__preview--${currentEffect}`);
-  uploadFormNode.addEventListener('change', onFilterChange);
+  effectsList.addEventListener('change', onFilterChange);
 };
 
 const offEffects = () => {
   destroyEffectLevel();
   imgPreview.classList.remove(`effects__preview--${currentEffect}`);
-  uploadFormNode.removeEventListener('change', onFilterChange);
+  effectsList.removeEventListener('change', onFilterChange);
 };
 
 export {onEffects, offEffects};
